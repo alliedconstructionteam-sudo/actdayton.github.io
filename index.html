@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allied Construction Team — A.C.T. | Dayton, Ohio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --red:#D42B2B; --red-dark:#A81E1E; --black:#111111; --white:#FAFAFA; --gray:#F0F0F0; --gray-mid:#CCCCCC; --gray-dark:#555555; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;} body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--black);line-height:1.6;overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--black);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:64px;border-bottom:3px solid var(--red);}
+  .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:3px;color:var(--red);text-decoration:none;}
+  .nav-links{display:flex;gap:32px;list-style:none;}
+  .nav-links a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-mid);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--red);}
+  .nav-cta{background:var(--red);color:var(--white)!important;padding:8px 18px;border-radius:3px;}
+  .nav-cta:hover{background:var(--red-dark)!important;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--white);}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--black);padding:24px 40px;z-index:99;border-bottom:2px solid var(--red);}
+  .mobile-menu.open{display:block;}
+  .mobile-menu a{display:block;font-family:'DM Mono',monospace;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-mid);text-decoration:none;padding:12px 0;border-bottom:1px solid #222;}
+  .mobile-menu a:last-child{border-bottom:none;color:var(--red);}
+  @media(max-width:768px){nav{padding:0 24px;}.nav-links{display:none;}.hamburger{display:flex;}}
+
+  /* HERO */
+  .hero{background:var(--black);color:var(--white);min-height:100vh;display:flex;align-items:center;padding:100px 40px 80px;position:relative;overflow:hidden;}
+  .hero::before{content:'A.C.T.';font-family:'Bebas Neue',sans-serif;font-size:clamp(120px,22vw,320px);position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:rgba(212,43,43,0.06);letter-spacing:4px;user-select:none;line-height:1;}
+  .hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+  .hero-tag{display:inline-block;background:var(--red);color:var(--white);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:2px;margin-bottom:24px;}
+  .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,9vw,100px);letter-spacing:2px;line-height:0.95;margin-bottom:20px;}
+  .hero h1 span{color:var(--red);}
+  .hero-sub{font-size:18px;color:var(--gray-mid);font-weight:300;max-width:520px;margin-bottom:36px;line-height:1.7;}
+  .hero-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{background:var(--red);color:var(--white);padding:16px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:background 0.2s;}
+  .btn-primary:hover{background:var(--red-dark);}
+  .btn-outline{border:2px solid rgba(255,255,255,0.2);color:var(--gray-mid);padding:14px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:3px;transition:all 0.2s;}
+  .btn-outline:hover{border-color:var(--red);color:var(--white);}
+  .hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:48px;}
+  .pill{border:1px solid rgba(255,255,255,0.12);color:var(--gray-dark);font-size:12px;padding:6px 14px;border-radius:100px;font-family:'DM Mono',monospace;}
+  @media(max-width:600px){.hero{padding:100px 24px 60px;}}
+
+  /* TRIAL BANNER */
+  .trial-banner{background:var(--red);color:var(--white);padding:40px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;}
+  .trial-banner h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4vw,44px);letter-spacing:1px;line-height:1;margin-bottom:8px;}
+  .trial-banner p{font-size:15px;opacity:0.9;max-width:500px;}
+  .trial-rules{display:flex;flex-direction:column;gap:8px;font-family:'DM Mono',monospace;font-size:11px;text-align:right;}
+  .trial-rule{background:rgba(255,255,255,0.15);padding:6px 12px;border-radius:3px;white-space:nowrap;}
+  @media(max-width:680px){.trial-banner{grid-template-columns:1fr;padding:32px 24px;}.trial-rules{text-align:left;}}
+
+  /* SECTIONS */
+  .section{padding:80px 40px;max-width:1000px;margin:0 auto;}
+  .section-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+  .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,56px);letter-spacing:1px;line-height:1;margin-bottom:32px;}
+  @media(max-width:600px){.section{padding:56px 24px;}}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+  .service-card{background:var(--gray);border-radius:8px;padding:28px;border-top:3px solid transparent;transition:border-color 0.2s;}
+  .service-card:hover{border-top-color:var(--red);}
+  .service-icon{font-size:28px;margin-bottom:12px;display:block;}
+  .service-card h3{font-size:16px;font-weight:700;margin-bottom:6px;}
+  .service-card p{font-size:13px;color:var(--gray-dark);line-height:1.6;}
+
+  /* PRICING */
+  .pricing-wrap{background:var(--black);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+  .pricing-category{border-bottom:1px solid #222;}
+  .pricing-category:last-child{border-bottom:none;}
+  .pricing-cat-header{padding:20px 28px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+  .pricing-cat-header h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:var(--white);flex:1;}
+  .pricing-cat-header span{font-family:'DM Mono',monospace;font-size:11px;color:var(--red);letter-spacing:1px;}
+  .pricing-rows{padding:0 28px 20px;display:none;}
+  .pricing-rows.open{display:block;}
+  .pricing-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #1a1a1a;}
+  .pricing-row:last-child{border-bottom:none;}
+  .pricing-row .name{font-size:14px;color:var(--gray-mid);}
+  .pricing-row .price{font-family:'DM Mono',monospace;font-size:13px;color:var(--red);font-weight:600;}
+
+  /* LAWN PLANS */
+  .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+  @media(max-width:680px){.plans-grid{grid-template-columns:1fr;}}
+  .plan-card{border-radius:10px;overflow:hidden;}
+  .plan-header{padding:24px;}
+  .plan-name{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;line-height:1;}
+  .plan-freq{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;opacity:0.6;margin-top:4px;}
+  .plan-price{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:1px;line-height:1;padding:16px 24px;}
+  .plan-note{font-family:'DM Mono',monospace;font-size:11px;opacity:0.7;padding:0 24px 20px;}
+  .plan-card.monthly{background:var(--gray);}
+  .plan-card.monthly .plan-price{color:var(--black);}
+  .plan-card.biweekly{background:var(--black);border:2px solid var(--red);}
+  .plan-card.biweekly .plan-name,.plan-card.biweekly .plan-freq{color:var(--white);}
+  .plan-card.biweekly .plan-price{color:var(--red);}
+  .plan-card.biweekly .plan-note{color:var(--gray-mid);}
+  .plan-card.weekly{background:var(--red);}
+  .plan-card.weekly .plan-name,.plan-card.weekly .plan-freq,.plan-card.weekly .plan-price,.plan-card.weekly .plan-note{color:var(--white);}
+  .popular-tag{display:inline-block;background:var(--red);color:var(--white);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1.5px;padding:3px 8px;border-radius:3px;text-transform:uppercase;margin-bottom:8px;}
+  .yard-sizes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+  @media(max-width:600px){.yard-sizes{grid-template-columns:1fr;}}
+  .yard-card{background:var(--gray);border-radius:8px;padding:20px;text-align:center;}
+  .yard-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;}
+  .yard-price{font-family:'DM Mono',monospace;font-size:28px;color:var(--red);font-weight:600;margin:4px 0;}
+  .yard-desc{font-size:12px;color:var(--gray-dark);line-height:1.5;}
+
+  /* ABOUT */
+  .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+  @media(max-width:680px){.about-wrap{grid-template-columns:1fr;}}
+  .about-text p{font-size:15px;color:var(--gray-dark);line-height:1.8;margin-bottom:16px;}
+  .about-text p strong{color:var(--black);}
+  .about-stats{display:flex;flex-direction:column;gap:16px;}
+  .stat-item{background:var(--black);border-radius:8px;padding:24px;border-left:4px solid var(--red);}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--red);line-height:1;}
+  .stat-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-mid);margin-top:4px;}
+
+  /* CONTACT */
+  .contact-section{background:var(--black);}
+  .contact-inner{max-width:1000px;margin:0 auto;padding:80px 40px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+  @media(max-width:680px){.contact-inner{grid-template-columns:1fr;padding:56px 24px;gap:40px;}}
+  .contact-inner .section-label{color:var(--red);}
+  .contact-inner .section-title{color:var(--white);margin-bottom:20px;}
+  .contact-inner > div > p{color:var(--gray-mid);font-size:15px;line-height:1.7;margin-bottom:32px;}
+  .contact-items{display:flex;flex-direction:column;gap:16px;}
+  .contact-item{display:flex;align-items:center;gap:16px;}
+  .contact-icon{width:44px;height:44px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .contact-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-dark);margin-bottom:2px;}
+  .contact-value{font-size:15px;font-weight:600;color:var(--white);}
+
+  /* FORM */
+  .contact-form{display:flex;flex-direction:column;gap:16px;}
+  .form-group{display:flex;flex-direction:column;gap:6px;}
+  .form-group label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-dark);}
+  .form-group input,.form-group select,.form-group textarea{background:#1a1a1a;border:1px solid #333;color:var(--white);padding:12px 16px;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:14px;transition:border-color 0.2s;outline:none;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red);}
+  .form-group textarea{resize:vertical;min-height:100px;}
+  .form-group select option{background:#1a1a1a;}
+  .form-submit{background:var(--red);color:var(--white);border:none;padding:16px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:background 0.2s;width:100%;}
+  .form-submit:hover{background:var(--red-dark);}
+  .form-success{display:none;background:#1a3a1a;border:1px solid #2D9B4E;border-radius:8px;padding:20px;color:#4DC96A;font-family:'DM Mono',monospace;font-size:13px;text-align:center;letter-spacing:1px;}
+
+  /* FOOTER */
+  footer{background:#0a0a0a;color:var(--gray-dark);text-align:center;padding:32px 24px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;border-top:3px solid var(--red);}
+  footer strong{color:var(--red);}
+  .footer-tagline{color:#333;font-size:10px;margin-top:8px;}
+  .red-divider{height:4px;background:var(--red);}
+  .note{font-size:12px;color:var(--gray-dark);font-family:'DM Mono',monospace;margin-top:12px;font-style:italic;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#home" class="nav-logo">A.C.T.</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#lawn">Lawn Plans</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://form.jotform.com/253368601035049" target="_blank" class="nav-cta">Free Estimate</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#lawn" onclick="toggleMenu()">Lawn Plans</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="https://form.jotform.com/253368601035049" target="_blank" onclick="toggleMenu()">Free Estimate →</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-tag">Student-Run · Dayton, Ohio</div>
+    <h1>Allied<br><span>Construction</span><br>Team</h1>
+    <p class="hero-sub">We're A.C.T. — a student-run construction and home services company based in Dayton. Real work. Fair prices. Building something that lasts.</p>
+    <div class="hero-buttons">
+      <a href="https://form.jotform.com/253368601035049" target="_blank" class="btn-primary">Get a Free Estimate</a>
+      <a href="#services" class="btn-outline">See Our Services</a>
+    </div>
+    <div class="hero-pills">
+      <span class="pill">Dayton, OH</span>
+      <span class="pill">Student-Run</span>
+      <span class="pill">Free Labor Trial</span>
+      <span class="pill">Fair Pricing</span>
+      <span class="pill">ACTDayton.com</span>
+    </div>
+  </div>
+</section>
+
+<div class="trial-banner">
+  <div>
+    <h2>Your First Job Is Free.<br>Labor. On Us.</h2>
+    <p>We want to earn your trust before you pay us anything. One free labor job per household — you just cover the cost of any materials. Come see what A.C.T. can do.</p>
+  </div>
+  <div class="trial-rules">
+    <div class="trial-rule">1 per household</div>
+    <div class="trial-rule">Labor only</div>
+    <div class="trial-rule">You cover materials</div>
+    <div class="trial-rule">First 50 households</div>
+    <div class="trial-rule">OR 60 days</div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="section">
+    <div class="section-label">What We Do</div>
+    <div class="section-title">Our Services</div>
+    <div class="services-grid">
+      <div class="service-card"><span class="service-icon">🧱</span><h3>Drywall</h3><p>Repair and installation. Nail holes, patches, full sheet installs. Labor only or labor + materials.</p></div>
+      <div class="service-card"><span class="service-icon">🎨</span><h3>Painting</h3><p>Interior walls, trim, touch-ups. We prep, we paint, we clean up. Quote-based by room size.</p></div>
+      <div class="service-card"><span class="service-icon">🪵</span><h3>Flooring</h3><p>Vinyl plank and laminate installation. Old floor removal and furniture moving available.</p></div>
+      <div class="service-card"><span class="service-icon">📺</span><h3>TV Mounting</h3><p>We'll mount it right, make sure it's level, and clean up when we're done.</p></div>
+      <div class="service-card"><span class="service-icon">🪑</span><h3>Furniture Assembly</h3><p>IKEA, Wayfair, whatever came in a box — we'll put it together properly.</p></div>
+      <div class="service-card"><span class="service-icon">🌿</span><h3>Yard Cleanup</h3><p>Clearing, hauling, and basic yard work. Great for spring and fall cleanouts.</p></div>
+      <div class="service-card"><span class="service-icon">🚛</span><h3>Junk Removal</h3><p>Old furniture, clutter, leftover debris — we haul it out.</p></div>
+      <div class="service-card"><span class="service-icon">🔧</span><h3>General Maintenance</h3><p>Curtain and blind installs, minor caulking, lightbulb replacement, and more.</p></div>
+      <div class="service-card"><span class="service-icon">✂️</span><h3>Lawn Care</h3><p>Monthly, bi-weekly, and weekly plans. We show up on schedule — no reminder needed.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="red-divider"></div>
+
+<section id="pricing">
+  <div class="section">
+    <div class="section-label">Clear & Honest</div>
+    <div class="section-title">Pricing</div>
+    <p style="color:var(--gray-dark);margin-bottom:28px;font-size:15px;"><strong>Labor Only</strong> — you supply materials, we do the work. &nbsp;|&nbsp; <strong>Labor + Materials</strong> — we handle everything, quoted upfront. No hidden fees — ever.</p>
+    <div class="pricing-wrap">
+      <div class="pricing-category">
+        <div class="pricing-cat-header" onclick="togglePricing(this)"><h3>Drywall</h3><span>Tap to expand ▾</span></div>
+        <div class="pricing-rows">
+          <div class="pricing-row"><span class="name">Nail holes / tiny dents</span><span class="price">$10–$20 each</span></div>
+          <div class="pricing-row"><span class="name">Small patch (up to 6")</span><span class="price">$25–$40</span></div>
+          <div class="pricing-row"><span class="name">Medium patch (6"–12")</span><span class="price">$45–$75</span></div>
+          <div class="pricing-row"><span class="name">Large patch (1–2 ft)</span><span class="price">$90–$150</span></div>
+          <div class="pricing-row"><span class="name">Install per sheet</span><span class="price">$25–$35</span></div>
+          <div class="pricing-row"><span class="name">Install + tape + mud</span><span class="price">$40–$60/sheet</span></div>
+        </div>
+      </div>
+      <div class="pricing-category">
+        <div class="pricing-cat-header" onclick="togglePricing(this)"><h3>Interior Painting</h3><span>Tap to expand ▾</span></div>
+        <div class="pricing-rows">
+          <div class="pricing-row"><span class="name">Small room (10x10)</span><span class="price">$120–$180</span></div>
+          <div class="pricing-row"><span class="name">Medium room</span><span class="price">$150–$250</span></div>
+          <div class="pricing-row"><span class="name">Large room</span><span class="price">$200–$350</span></div>
+          <div class="pricing-row"><span class="name">Trim / Baseboards</span><span class="price">$1–$2 per ft</span></div>
+          <div class="pricing-row"><span class="name">Doors</span><span class="price">$25–$40 each</span></div>
+        </div>
+      </div>
+      <div class="pricing-category">
+        <div class="pricing-cat-header" onclick="togglePricing(this)"><h3>Flooring</h3><span>Tap to expand ▾</span></div>
+        <div class="pricing-rows">
+          <div class="pricing-row"><span class="name">Vinyl plank install</span><span class="price">$1.00–$1.75/sq ft</span></div>
+          <div class="pricing-row"><span class="name">Laminate install</span><span class="price">$1.00–$2.00/sq ft</span></div>
+          <div class="pricing-row"><span class="name">Trim / Baseboard install</span><span class="price">$0.50–$1.25/ft</span></div>
+          <div class="pricing-row"><span class="name">Old floor removal</span><span class="price">$0.50–$1.00/sq ft</span></div>
+          <div class="pricing-row"><span class="name">Furniture moving</span><span class="price">$10–$30/room</span></div>
+        </div>
+      </div>
+      <div class="pricing-category">
+        <div class="pricing-cat-header" onclick="togglePricing(this)"><h3>General Maintenance</h3><span>Tap to expand ▾</span></div>
+        <div class="pricing-rows">
+          <div class="pricing-row"><span class="name">TV Mounting</span><span class="price">$30–$60</span></div>
+          <div class="pricing-row"><span class="name">Furniture Assembly</span><span class="price">$25–$75</span></div>
+          <div class="pricing-row"><span class="name">Curtain / Blinds Install</span><span class="price">$20–$45</span></div>
+          <div class="pricing-row"><span class="name">Minor Caulking</span><span class="price">$20–$50</span></div>
+          <div class="pricing-row"><span class="name">Lightbulb Replacement</span><span class="price">$15–$25 each</span></div>
+          <div class="pricing-row"><span class="name">Yard Cleanup</span><span class="price">$40–$100</span></div>
+          <div class="pricing-row"><span class="name">Junk Removal</span><span class="price">Quote-based — contact us</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note">★ All prices are estimates. Final quote given after seeing the job. We never surprise people with hidden costs.</p>
+  </div>
+</section>
+
+<section id="lawn" style="background:var(--gray);">
+  <div class="section">
+    <div class="section-label">A.C.T. Landscaping</div>
+    <div class="section-title">Lawn Care Plans</div>
+    <p style="color:var(--gray-dark);margin-bottom:28px;font-size:15px;">Pick your schedule. We show up on the agreed day and cut your grass — no reminder needed. Cash only after every cut.</p>
+    <div class="plans-grid">
+      <div class="plan-card monthly">
+        <div class="plan-header"><div class="plan-name">Monthly</div><div class="plan-freq">1 cut per month</div></div>
+        <div class="plan-price">$25+</div>
+        <div class="plan-note">per cut · priced by yard size</div>
+      </div>
+      <div class="plan-card biweekly">
+        <div class="plan-header"><div class="popular-tag">★ Most Popular</div><div class="plan-name">Bi-Weekly</div><div class="plan-freq">2 cuts per month</div></div>
+        <div class="plan-price">$25+</div>
+        <div class="plan-note">per cut · priced by yard size</div>
+      </div>
+      <div class="plan-card weekly">
+        <div class="plan-header"><div class="plan-name">Weekly</div><div class="plan-freq">4 cuts per month</div></div>
+        <div class="plan-price">$25+</div>
+        <div class="plan-note">per cut · priced by yard size</div>
+      </div>
+    </div>
+    <div class="yard-sizes">
+      <div class="yard-card"><div class="yard-name">Small Yard</div><div class="yard-price">$25</div><div class="yard-desc">Compact yard, ~20 min. Typical row house or small front + back.</div></div>
+      <div class="yard-card"><div class="yard-name">Medium Yard</div><div class="yard-price">$35</div><div class="yard-desc">Standard suburban yard, 20–40 min. Average front and back lawn.</div></div>
+      <div class="yard-card"><div class="yard-name">Large Yard</div><div class="yard-price">$50</div><div class="yard-desc">Bigger property, 40+ min. Large open lawn or multiple sections.</div></div>
+    </div>
+    <p class="note">★ Yard size assessed at your free estimate visit. No obligation.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section">
+    <div class="section-label">Who We Are</div>
+    <div class="section-title">About A.C.T.</div>
+    <div class="about-wrap">
+      <div class="about-text">
+        <p>Allied Construction Team — A.C.T. — is a <strong>student-run construction and home services company</strong> based in Dayton, Ohio. We started with a simple idea: learn real skills, do real work, and build something that matters in our community.</p>
+        <p>Right now we offer home services, maintenance, and lawn care. But the goal is bigger — <strong>roofing, landscaping, electrical, and more</strong> — each team carrying the A.C.T. name and the same standard of honest work we're building today.</p>
+        <p>We're early. We're growing. And we're not stopping.</p>
+        <p style="margin-top:24px;font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--red);">Learn. Build. Lead.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item"><div class="stat-num">15–18</div><div class="stat-label">Age of our team</div></div>
+        <div class="stat-item"><div class="stat-num">Dayton</div><div class="stat-label">Our home</div></div>
+        <div class="stat-item"><div class="stat-num">Free</div><div class="stat-label">First job — labor only</div></div>
+        <div class="stat-item"><div class="stat-num">Real</div><div class="stat-label">Work. Skills. Growth.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="red-divider"></div>
+
+<section id="contact">
+  <div class="contact-section">
+    <div class="contact-inner">
+      <div>
+        <div class="section-label">Get In Touch</div>
+        <div class="section-title">Request a Free Estimate</div>
+        <p>Ready to get started? Fill out the form and we'll get back to you within 24 hours. Free estimate on every job — no pressure, no obligation.</p>
+        <div class="contact-items">
+          <div class="contact-item"><div class="contact-icon">📞</div><div><div class="contact-label">Call or Text</div><div class="contact-value">(937) 993-2844</div></div></div>
+          <div class="contact-item"><div class="contact-icon">✉️</div><div><div class="contact-label">Email</div><div class="contact-value">alliedconstructionteam@gmail.com</div></div></div>
+          <div class="contact-item"><div class="contact-icon">📘</div><div><div class="contact-label">Facebook</div><div class="contact-value"><a href="https://www.facebook.com/share/1D55mBCPYh/?mibextend=wwXIfr" target="_blank" style="color:#FAFAFA;text-decoration:none;">Allied Construction Team ↗</a></div></div></div>
+          <div class="contact-item"><div class="contact-icon">📸</div><div><div class="contact-label">Instagram</div><div class="contact-value"><a href="https://www.instagram.com/actdayton?igsh=MWd0bmhhbGQxcTVhaA%3D%3D&utm_source=qr" target="_blank" style="color:#FAFAFA;text-decoration:none;">@actdayton ↗</a></div></div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;height:100%;">
+        <div style="background:#1a1a1a;border-radius:12px;padding:40px;width:100%;border:1px solid #222;">
+          <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#D42B2B;margin-bottom:12px;">Free Estimate</p>
+          <p style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:#FAFAFA;line-height:1;margin-bottom:16px;">Fill Out Our<br>Request Form</p>
+          <p style="font-size:14px;color:#555555;line-height:1.7;margin-bottom:32px;">Takes less than 2 minutes. Tell us what you need and we'll reach out within 24 hours. No pressure — just a conversation.</p>
+          <a href="https://form.jotform.com/253368601035049" target="_blank" style="display:block;background:#D42B2B;color:#FAFAFA;padding:18px 32px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:3px;text-align:center;transition:background 0.2s;">Request Free Estimate →</a>
+          <p style="font-size:12px;color:#333;margin-top:16px;font-family:'DM Mono',monospace;text-align:center;">Or call/text us directly: (937) 993-2844</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>A.C.T.</strong> — Allied Construction Team · Dayton, Ohio · (937) 993-2844 · ACTDayton.com
+  <div class="footer-tagline">Building Skills. Building Community. Building Futures.</div>
+</footer>
+
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+  function togglePricing(header){const rows=header.nextElementSibling;rows.classList.toggle('open');const span=header.querySelector('span');span.textContent=rows.classList.contains('open')?'Tap to collapse ▴':'Tap to expand ▾';}
+  function submitForm(e){e.preventDefault();document.getElementById('formSuccess').style.display='block';e.target.reset();setTimeout(()=>{document.getElementById('formSuccess').style.display='none';},5000);}
+  window.addEventListener('scroll',()=>{document.getElementById('mobileMenu').classList.remove('open');});
+</script>
+</body>
+</html>
